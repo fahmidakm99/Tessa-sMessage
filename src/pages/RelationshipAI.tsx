@@ -1,4 +1,5 @@
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
+import type { ChangeEvent } from "react";
 
 const relationshipData: { [key: string]: string } = {
   "first date": "🌹 Our first date on 24 June 2023 was magical! Nervous smiles, shy laughs, and endless joy.",

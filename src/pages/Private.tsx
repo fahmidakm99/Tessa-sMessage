@@ -11,7 +11,7 @@ const Private: React.FC<PrivateProps> = ({ children }) => {
   const [error, setError] = useState<string>("");
 
   const checkPassword = () => {
-    if (password.toLowerCase() === "biriyani") {
+    if (password.toLowerCase() === "falimy") {
       setAccess(true);
     } else {
       setError("Wrong password 💔 Try again!");
@@ -25,7 +25,7 @@ const Private: React.FC<PrivateProps> = ({ children }) => {
     <div style={styles.container}>
       <div style={styles.box}>
         <h1 style={styles.title}>Enter Password 💕</h1>
-        <h2 style={styles.subtitle}>What is my favorite food?</h2>
+        <h2 style={styles.subtitle}>Our First Movie ?</h2>
 
         <input
           type="password"

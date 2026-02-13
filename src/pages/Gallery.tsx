@@ -22,7 +22,6 @@ const gallerySections: GallerySection[] = [
       "/couple/m3.jpg",
       "/couple/m4.jpg",
       "/couple/m5.jpg",
-      "/couple/m5.jpg",
       "/couple/m6.jpg",
       "/couple/m7.jpg",
       "/us/us.jpg",

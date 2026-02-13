@@ -6,26 +6,30 @@ const Home: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h1>Ajnu ❤️ Pammini</h1>
-      <p>Our journey started on 24 April 2023 💕</p>
+      <h1 style={styles.title}>Ajnu ❤️ Pammini</h1>
+
+      <p style={styles.subtitle}>
+        Our journey started on 24 April 2023 💕
+      </p>
 
       <Countdown />
 
-      <p style={{ marginTop: "20px" }}>Alhamdulilah 🤍</p>
-      <p>I love you moreee Ajnuuu 💖</p>
+      <p style={styles.blessing}>Alhamdulilah 🤍</p>
+      <p style={styles.loveText}>I love you moreee Ajnuuu 💖</p>
 
-      {/* Button to open letter */}
+      {/* Button */}
       <button
         style={styles.openButton}
-        onClick={() => setOpenLetter(true)}
+        onClick={() => setOpenLetter(!openLetter)}
       >
-        Open Your Letter 💌
+        {openLetter ? "Close Letter 💕" : "Open Your Letter 💌"}
       </button>
 
-      {/* Letter Box */}
+      {/* Letter */}
       {openLetter && (
         <div style={styles.letterBox}>
           <h2 style={styles.letterTitle}>💌 For You</h2>
+
           <p style={styles.letterText}>
             My dearest Ajnu,
             <br /><br />
@@ -48,37 +52,69 @@ const Home: React.FC = () => {
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     textAlign: "center",
-    marginTop: "100px",
-    fontFamily: "Arial, sans-serif",
-    paddingBottom: "60px"
+    padding: "clamp(30px, 6vw, 100px) 20px",
+    fontFamily: "'Segoe UI', sans-serif",
+    minHeight: "100vh",
+    background: "linear-gradient(to bottom, #fff0f5, #ffe6f0)"
   },
+
+  title: {
+    fontSize: "clamp(28px, 6vw, 48px)",
+    color: "#ff4d94",
+    marginBottom: "10px"
+  },
+
+  subtitle: {
+    fontSize: "clamp(16px, 4vw, 20px)",
+    color: "#666",
+    marginBottom: "25px"
+  },
+
+  blessing: {
+    marginTop: "25px",
+    fontSize: "clamp(16px, 4vw, 20px)"
+  },
+
+  loveText: {
+    fontSize: "clamp(18px, 5vw, 22px)",
+    fontWeight: 500,
+    marginBottom: "20px"
+  },
+
   openButton: {
-    marginTop: "30px",
-    padding: "12px 25px",
-    borderRadius: "25px",
+    marginTop: "25px",
+    padding: "12px 30px",
+    borderRadius: "30px",
     border: "none",
-    backgroundColor: "#ff4d94",
+    background: "linear-gradient(135deg, #ff4d94, #ff99c8)",
     color: "white",
-    fontSize: "16px",
-    cursor: "pointer"
+    fontSize: "clamp(14px, 4vw, 16px)",
+    cursor: "pointer",
+    transition: "0.3s",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
   },
+
   letterBox: {
     marginTop: "40px",
-    maxWidth: "600px",
+    maxWidth: "700px",
     marginInline: "auto",
-    padding: "30px",
-    borderRadius: "15px",
-    backgroundColor: "#fff5f8",
+    padding: "clamp(20px, 5vw, 40px)",
+    borderRadius: "20px",
+    backgroundColor: "white",
     border: "1px solid #ffccd9",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.05)"
+    boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
+    animation: "fadeIn 0.5s ease-in-out"
   },
+
   letterTitle: {
     marginBottom: "20px",
-    color: "#ff4d94"
+    color: "#ff4d94",
+    fontSize: "clamp(20px, 5vw, 28px)"
   },
+
   letterText: {
     lineHeight: "1.8",
-    fontSize: "16px",
+    fontSize: "clamp(14px, 4vw, 18px)",
     color: "#444"
   }
 };

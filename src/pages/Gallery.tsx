@@ -220,33 +220,21 @@ const gallerySections: GallerySection[] = [
 
 const Gallery: React.FC = () => {
   const [selected, setSelected] = useState<string | null>(null);
-  const [activeSection, setActiveSection] = useState<number>(0); // start with first section
+  const [activeSection, setActiveSection] = useState<number>(0);
 
   return (
-    <div style={{ textAlign: "center", padding: "50px" }}>
-      <h1>Gallery</h1>
+    <div style={styles.container}>
+      <h1 style={styles.title}>Gallery</h1>
 
       {/* Section Tabs */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-          marginTop: "30px",
-        }}
-      >
+      <div style={styles.tabs}>
         {gallerySections.map((section, idx) => (
           <button
             key={idx}
             onClick={() => setActiveSection(idx)}
             style={{
-              padding: "10px 20px",
-              borderRadius: "10px",
-              border: "none",
-              cursor: "pointer",
-              backgroundColor: activeSection === idx ? "#ff99c8" : "#ffe6f0",
-              color: activeSection === idx ? "white" : "black",
-              fontWeight: "bold",
+              ...styles.tabBtn,
+              ...(activeSection === idx ? styles.activeTab : {})
             }}
           >
             {section.title}
@@ -255,20 +243,13 @@ const Gallery: React.FC = () => {
       </div>
 
       {/* Images Grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "20px",
-          marginTop: "30px",
-        }}
-      >
+      <div style={styles.grid}>
         {gallerySections[activeSection].images.map((img, index) => (
           <img
             key={index}
             src={img}
             alt={gallerySections[activeSection].title}
-            style={{ width: "100%", cursor: "pointer", borderRadius: "10px" }}
+            style={styles.image}
             onClick={() => setSelected(img)}
           />
         ))}
@@ -276,28 +257,86 @@ const Gallery: React.FC = () => {
 
       {/* Lightbox */}
       {selected && (
-        <div
-          onClick={() => setSelected(null)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.8)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img
-            src={selected}
-            style={{ maxHeight: "80%", borderRadius: "10px" }}
-          />
+        <div style={styles.lightbox} onClick={() => setSelected(null)}>
+          <img src={selected} style={styles.lightboxImg} />
         </div>
       )}
     </div>
   );
+};
+
+const styles: { [key: string]: React.CSSProperties } = {
+  container: {
+    textAlign: "center",
+    padding: "clamp(20px, 5vw, 50px)"
+  },
+
+  title: {
+    fontSize: "clamp(24px, 5vw, 40px)",
+    color: "#ff4d94",
+    marginBottom: "20px"
+  },
+
+  tabs: {
+    display: "flex",
+    gap: "15px",
+    overflowX: "auto",
+    paddingBottom: "10px",
+    marginBottom: "30px",
+    scrollbarWidth: "none"
+  },
+
+  tabBtn: {
+    padding: "10px 18px",
+    borderRadius: "25px",
+    border: "none",
+    cursor: "pointer",
+    background: "#ffe6f0",
+    fontWeight: "bold",
+    whiteSpace: "nowrap",
+    transition: "0.3s",
+    flexShrink: 0
+  },
+
+  activeTab: {
+    background: "#ff99c8",
+    color: "white"
+  },
+
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: "20px"
+  },
+
+  image: {
+    width: "100%",
+    borderRadius: "15px",
+    cursor: "pointer",
+    objectFit: "cover",
+    aspectRatio: "1 / 1",
+    transition: "0.3s"
+  },
+
+  lightbox: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(0,0,0,0.85)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px",
+    zIndex: 999
+  },
+
+  lightboxImg: {
+    maxWidth: "95%",
+    maxHeight: "90%",
+    borderRadius: "20px"
+  }
 };
 
 export default Gallery;

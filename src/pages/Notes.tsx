@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import type { ChangeEvent } from "react";
+import RelationshipAI from "./RelationshipAI";
 
 interface Note {
   id: number;
@@ -13,7 +14,6 @@ const Notes: React.FC = () => {
 
   const BACKEND_URL = "https://couple-backend-5axe.onrender.com";
 
-  // Fetch notes
   const fetchNotes = async () => {
     try {
       const res = await fetch(`${BACKEND_URL}/notes`);
@@ -28,7 +28,6 @@ const Notes: React.FC = () => {
     fetchNotes();
   }, []);
 
-  // Add note
   const addNote = async () => {
     if (!input.trim()) return;
 
@@ -40,13 +39,12 @@ const Notes: React.FC = () => {
       });
       setInput("");
       fetchNotes();
-      if (!showNotes) setShowNotes(true); // open box automatically
+      if (!showNotes) setShowNotes(true);
     } catch (err) {
       console.error("Failed to add note:", err);
     }
   };
 
-  // Delete note
   const deleteNote = async (id: number) => {
     try {
       await fetch(`${BACKEND_URL}/notes/${id}`, { method: "DELETE" });
@@ -58,14 +56,16 @@ const Notes: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h2>💖 Our Love Notes</h2>
+      <h2 style={styles.title}>💖 Our Love Notes</h2>
 
       <div style={styles.inputContainer}>
         <input
           type="text"
           placeholder="Write something sweet..."
           value={input}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setInput(e.target.value)
+          }
           style={styles.input}
         />
         <button onClick={addNote} style={styles.addButton}>
@@ -73,7 +73,6 @@ const Notes: React.FC = () => {
         </button>
       </div>
 
-      {/* Mystery Box */}
       <div style={{ marginTop: "30px" }}>
         <button
           onClick={() => setShowNotes(!showNotes)}
@@ -87,7 +86,7 @@ const Notes: React.FC = () => {
             {notes.length === 0 && <p>No notes yet 💕</p>}
             {notes.map((note) => (
               <div key={note.id} style={styles.noteCard}>
-                <span>{note.message}</span>
+                <span style={styles.noteText}>{note.message}</span>
                 <button
                   onClick={() => deleteNote(note.id)}
                   style={styles.deleteButton}
@@ -99,6 +98,8 @@ const Notes: React.FC = () => {
           </div>
         )}
       </div>
+
+      <RelationshipAI/>
     </div>
   );
 };
@@ -106,77 +107,97 @@ const Notes: React.FC = () => {
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     textAlign: "center",
-    padding: "50px",
-    fontFamily: "Arial, sans-serif",
-    backgroundColor: "#fff0f5",
+    padding: "clamp(20px, 6vw, 60px)",
+    fontFamily: "'Segoe UI', sans-serif",
+    background: "linear-gradient(to bottom, #fff0f5, #ffe6f0)",
     minHeight: "100vh"
   },
+
+  title: {
+    fontSize: "clamp(22px, 5vw, 32px)",
+    marginBottom: "20px",
+    color: "#ff4d94"
+  },
+
   inputContainer: {
     display: "flex",
     justifyContent: "center",
     gap: "10px",
-    marginBottom: "20px"
+    flexWrap: "wrap"
   },
+
   input: {
-    padding: "10px",
-    width: "250px",
-    borderRadius: "10px",
+    padding: "12px",
+    width: "clamp(180px, 60vw, 300px)",
+    borderRadius: "25px",
     border: "1px solid #ff99c8",
-    outline: "none"
+    outline: "none",
+    fontSize: "14px"
   },
+
   addButton: {
-    padding: "10px 20px",
-    borderRadius: "10px",
-    backgroundColor: "#ff4d94",
+    padding: "12px 20px",
+    borderRadius: "25px",
+    background: "linear-gradient(135deg, #ff4d94, #ff99c8)",
     color: "white",
     border: "none",
     cursor: "pointer",
     fontWeight: "bold"
   },
+
   mysteryButton: {
-    padding: "15px 30px",
-    borderRadius: "15px",
-    backgroundColor: "#ff99c8",
+    padding: "14px 30px",
+    borderRadius: "30px",
+    background: "#ff99c8",
     color: "white",
     border: "none",
-    fontSize: "18px",
+    fontSize: "clamp(14px, 4vw, 18px)",
     fontWeight: "bold",
     cursor: "pointer"
   },
+
   notesBox: {
-    marginTop: "20px",
-    maxHeight: "300px",
+    marginTop: "25px",
+    maxHeight: "350px",
     overflowY: "auto",
     display: "flex",
     flexDirection: "column",
-    gap: "10px",
-    alignItems: "center",
-    padding: "20px",
-    borderRadius: "15px",
+    gap: "12px",
+    padding: "clamp(15px, 4vw, 25px)",
+    borderRadius: "20px",
     border: "2px dashed #ff99c8",
-    backgroundColor: "#fff5f8",
-    width: "300px",
-    margin: "0 auto"
-  },
-  noteCard: {
     backgroundColor: "white",
-    padding: "10px",
-    borderRadius: "10px",
+    width: "clamp(250px, 80vw, 450px)",
+    marginInline: "auto"
+  },
+
+  noteCard: {
+    backgroundColor: "#fff5f8",
+    padding: "12px 15px",
+    borderRadius: "15px",
     border: "1px solid #ff99c8",
-    width: "100%",
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    gap: "10px"
   },
+
+  noteText: {
+    flex: 1,
+    textAlign: "left",
+    wordBreak: "break-word"
+  },
+
   deleteButton: {
-    backgroundColor: "red",
+    backgroundColor: "#ff4d4d",
     color: "white",
     border: "none",
     borderRadius: "50%",
-    width: "25px",
-    height: "25px",
+    width: "28px",
+    height: "28px",
     cursor: "pointer",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    flexShrink: 0
   }
 };
 

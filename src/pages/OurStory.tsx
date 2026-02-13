@@ -5,6 +5,7 @@ interface Milestone {
   event: string;
   image: string;
   note: string;
+  audio?: string; // Optional audio
 }
 
 const OurStory: React.FC = () => {
@@ -27,7 +28,8 @@ const OurStory: React.FC = () => {
       date: "25 June 2023",
       event: "Engaged 💍",
       image: "/story/IMG_2325.JPG",
-      note: "The happiest yes of my life. The moment we promised forever to each other."
+      note: "The happiest yes of my life. The moment we promised forever to each other.",
+      audio: "/music/savariya-song.mpeg" // 🎵 Add your song here
     },
     {
       date: "6 July 2023",
@@ -83,6 +85,14 @@ const OurStory: React.FC = () => {
               <div style={styles.expanded}>
                 <img src={m.image} alt={m.event} style={styles.image} />
                 <p style={styles.note}>{m.note}</p>
+
+                {/* 🎵 Audio Player (only shows if audio exists) */}
+                {m.audio && (
+                  <audio controls autoPlay style={styles.audio }>
+                    <source src={m.audio} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                )}
               </div>
             )}
           </div>
@@ -166,6 +176,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   note: {
     lineHeight: "1.6",
     color: "#444"
+  },
+
+  audio: {
+    width: "100%",
+    marginTop: "10px"
   }
 };
 

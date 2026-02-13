@@ -106,6 +106,7 @@ const gallerySections: GallerySection[] = [
   {
     title: "Engaged",
     images: [
+      "/engage/engagement.mp4",
       "/engage/engage1.JPG",
       "/engage/engage2.jpg",
       "/engage/engage3.jpg",
@@ -224,9 +225,9 @@ const Gallery: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Gallery</h1>
+      <h1 style={styles.title}>Gallery 💖</h1>
 
-      {/* Section Tabs */}
+      {/* Tabs */}
       <div style={styles.tabs}>
         {gallerySections.map((section, idx) => (
           <button
@@ -242,23 +243,47 @@ const Gallery: React.FC = () => {
         ))}
       </div>
 
-      {/* Images Grid */}
+      {/* Grid */}
       <div style={styles.grid}>
-        {gallerySections[activeSection].images.map((img, index) => (
-          <img
-            key={index}
-            src={img}
-            alt={gallerySections[activeSection].title}
-            style={styles.image}
-            onClick={() => setSelected(img)}
-          />
-        ))}
+        {gallerySections[activeSection].images.map((media, index) => {
+          const isVideo = media.toLowerCase().endsWith(".mp4");
+
+          return (
+            <div key={index} style={styles.mediaWrapper}>
+              {isVideo ? (
+                <video
+                  src={media}
+                  style={styles.image}
+                  muted
+                  playsInline
+                  onClick={() => setSelected(media)}
+                />
+              ) : (
+                <img
+                  src={media}
+                  alt="gallery"
+                  style={styles.image}
+                  onClick={() => setSelected(media)}
+                />
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {/* Lightbox */}
       {selected && (
         <div style={styles.lightbox} onClick={() => setSelected(null)}>
-          <img src={selected} style={styles.lightboxImg} />
+          {selected.toLowerCase().endsWith(".mp4") ? (
+            <video
+              src={selected}
+              controls
+              autoPlay
+              style={styles.lightboxMedia}
+            />
+          ) : (
+            <img src={selected} style={styles.lightboxMedia} />
+          )}
         </div>
       )}
     </div>
@@ -282,8 +307,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: "15px",
     overflowX: "auto",
     paddingBottom: "10px",
-    marginBottom: "30px",
-    scrollbarWidth: "none"
+    marginBottom: "30px"
   },
 
   tabBtn: {
@@ -294,8 +318,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     background: "#ffe6f0",
     fontWeight: "bold",
     whiteSpace: "nowrap",
-    transition: "0.3s",
-    flexShrink: 0
+    transition: "0.3s"
   },
 
   activeTab: {
@@ -307,6 +330,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
     gap: "20px"
+  },
+
+  mediaWrapper: {
+    position: "relative"
   },
 
   image: {
@@ -332,7 +359,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     zIndex: 999
   },
 
-  lightboxImg: {
+  lightboxMedia: {
     maxWidth: "95%",
     maxHeight: "90%",
     borderRadius: "20px"

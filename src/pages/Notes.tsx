@@ -6,7 +6,7 @@ function Notes() {
 
   // Fetch notes from backend
   const fetchNotes = async () => {
-    const res = await fetch("https://couple-backend.onrender.com/notes");
+    const res = await fetch("https://couple-backend-5axe.onrender.com/notes");
     const data = await res.json();
     setNotes(data);
   };
@@ -19,7 +19,7 @@ function Notes() {
   const addNote = async () => {
     if (!input.trim()) return;
 
-    await fetch("https://couple-backend.onrender.com/notes", {
+    await fetch("https://couple-backend-5axe.onrender.com/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +33,7 @@ function Notes() {
 
   // Delete note
   const deleteNote = async (id) => {
-    await fetch(`https://couple-backend.onrender.com/notes/${id}`, {
+    await fetch(`https://couple-backend-5axe.onrender.com/notes/${id}`, {
       method: "DELETE"
     });
 

@@ -44,7 +44,7 @@ const OurStory: React.FC = () => {
       note: "Our first Valentine’s Day together — filled with love, surprises, and warm hugs."
     },
     {
-      date: "3 December 2024",
+      date: "3 December 2023",
       event: "It’s our wedding day 🎉",
       image:  "/images/w1.jpg",
       note: "The day our forever officially begins. A dream turning into reality."

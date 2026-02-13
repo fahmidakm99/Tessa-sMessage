@@ -7,7 +7,7 @@ const relationshipData: { [key: string]: string } = {
   "engaged": "💍 On 25 June 2023, we promised forever to each other.",
   "cherai": "🌊 Secret dating at Cherai on 10 July 2023 – just you, me, and the waves.",
   "valentine": "❤️ First Valentine's together on 14 Feb 2024, full of love and surprises.",
-  "wedding": "🎉 Our wedding day is on 3 Dec 2024! Forever begins."
+  "wedding": "🎉 Our wedding day is on 3 Dec 2023! Forever begins."
 };
 
 const RelationshipAI: React.FC = () => {

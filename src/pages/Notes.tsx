@@ -1,4 +1,5 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect } from "react";
+import type { ChangeEvent } from "react";
 
 interface Note {
   id: number;

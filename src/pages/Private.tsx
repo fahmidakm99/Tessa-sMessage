@@ -11,7 +11,7 @@ const Private: React.FC<PrivateProps> = ({ children }) => {
   const [error, setError] = useState<string>("");
 
   const checkPassword = () => {
-    if (password.toLowerCase() === "pomeogranate") {
+    if (password.toLowerCase() === "pomegranate") {
       setAccess(true);
     } else {
       setError("Wrong password 💔 Try again!");

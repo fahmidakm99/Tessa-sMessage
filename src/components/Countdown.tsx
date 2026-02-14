@@ -6,7 +6,7 @@ const Countdown: React.FC = () => {
 
   const getDaysOfRelationship = () => {
     const today = new Date();
-    const startDate = new Date("2022-02-15");
+     const startDate = new Date("2022-01-15");
     const diffInMs = today.getTime() - startDate.getTime();
     return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
   };
@@ -15,7 +15,7 @@ const Countdown: React.FC = () => {
     const today = new Date();
     const currentYear = today.getFullYear();
 
-    let anniversary = new Date(currentYear, 12, 3);
+    let anniversary = new Date(currentYear, 11, 3);
 
     if (today > anniversary) {
       anniversary.setFullYear(currentYear + 1);
@@ -47,7 +47,7 @@ const Countdown: React.FC = () => {
         </p>
 
         <p style={styles.text}>
-          🎉 Days Until Wedding Anniversary:
+          🎉 Days Until first meet Anniversary:
           <span style={styles.number}> {daysToAnniversary}</span>
         </p>
       </div>

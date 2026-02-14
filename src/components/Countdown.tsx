@@ -6,7 +6,7 @@ const Countdown: React.FC = () => {
 
   const getDaysOfRelationship = () => {
     const today = new Date();
-     const startDate = new Date("2022-01-15");
+     const startDate = new Date("2022-02-15");
     const diffInMs = today.getTime() - startDate.getTime();
     return Math.floor(diffInMs / (1000 * 60 * 60 * 24));
   };

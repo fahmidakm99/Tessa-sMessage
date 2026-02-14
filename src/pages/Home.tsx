@@ -6,16 +6,15 @@ const Home: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Ajnu ❤️ Pammini</h1>
+      <h1 style={styles.title}>Echay ❤️ Tessa</h1>
 
       <p style={styles.subtitle}>
-        Our journey started on 24 April 2023 💕
+        Our journey started on 15 February 2022 💕
       </p>
 
       <Countdown />
 
       <p style={styles.blessing}>Alhamdulilah 🤍</p>
-      <p style={styles.loveText}>I love you moreee Ajnuuu 💖</p>
 
       {/* Button */}
       <button
@@ -31,17 +30,19 @@ const Home: React.FC = () => {
           <h2 style={styles.letterTitle}>💌 For You</h2>
 
           <p style={styles.letterText}>
-            My dearest Ajnu,
+            Dear Echay,
             <br /><br />
-            Every single day with you feels like a blessing I never want to lose.
-            From the smallest laughs to the biggest dreams, everything feels
-            better because you are beside me.
+            Four years ago we started this journey,
+            and every day since has been a gift. 
+            These last four years has been the most 
+            beautiful chapter of my life."
             <br /><br />
-            Thank you for loving me, supporting me, and choosing me every day.
-            I promise to stand by you, grow with you, and love you more than
-            yesterday, but less than tomorrow.
+            Thankyou for being my partner, my best friend 
+            and my home. Happy Anniversary to the person who 
+            makes my heart full.
             <br /><br />
-            Forever yours 🤍
+             I love you always 🤍
+             Ami
           </p>
         </div>
       )}

@@ -41,7 +41,7 @@ const Home: React.FC = () => {
             and my home. Happy Anniversary to the person who 
             makes my heart full.
             <br /><br />
-             I love you always 🤍
+             I love you always 🤍<br></br>
              Ami
           </p>
         </div>
